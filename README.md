@@ -7,7 +7,7 @@
         pip3 install -r requirements.txt
     ```
 3. Get API key from the League of Legends Developers Portal.
-3. Add the following line to your .bashrc, replace the path with your own path (e.g. $HOME/quoty).
+4. Add the following line to your .bashrc, replace the path with your own path (e.g. $HOME/quoty).
     ```
         export LOLCLI_APIKEY=<api-key>
         export LOLCLI_PATH=<path-to-lolcli>
