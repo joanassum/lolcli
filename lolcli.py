@@ -1,6 +1,7 @@
 import click
 import requests
 import os
+import runes_storage
 
 from pprint import pprint
 from PyInquirer import prompt
@@ -181,6 +182,8 @@ def addrunes(name):
     ]
     answers = prompt(questions)
     pprint(answers)
+
+    runes_storage.addrunes(name, answers)
     
 if __name__ == '__main__':
     lolcli(prog_name='lolcli')
