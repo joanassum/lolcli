@@ -2,7 +2,7 @@ import click
 import requests
 import os
 import runes_storage
-import runes_questions
+import runes_utils
 
 from pprint import pprint
 from PyInquirer import prompt
@@ -48,12 +48,26 @@ def freechamp(region):
 @lolcli.command()
 @click.argument('name', type=click.STRING)
 def addrunes(name):
-    questions = runes_questions.get_questions()
+    questions = runes_utils.get_questions()
     
     answers = prompt(questions)
-    pprint(answers)
 
     runes_storage.addrunes(name, answers)
+
+@lolcli.command()
+@click.argument('name', type=click.STRING)
+def getrunes(name):
+    runes = runes_storage.getrunes(name)
+    
+    print("")
+    print(runes['primarypath'] + ", " +  runes['keystone'] + ", " + runes['primaryslot1'] + ", " + runes['primaryslot2'] + ", " + runes['primaryslot3'])
+    print(runes['secondarypath'] + ", " + runes['secondaryslot1'] + ", " + runes['secondaryslot2'] )
+    print("Offensive: " + runes['offensive'])
+    print("Flex: " + runes['flex'])
+    print("Defence: " + runes['defence'])
+    print("")
+
+    print(runes_utils.simplify_output(runes))
     
 if __name__ == '__main__':
     lolcli(prog_name='lolcli')

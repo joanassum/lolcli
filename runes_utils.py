@@ -1,4 +1,5 @@
 paths = ['Precision','Domination','Sorcery','Resolve','Inspiration']
+colour = ['yellow', 'red', 'purple', 'green', 'lightblue']
 
 slot1 = {
     "Precision": ["Overheal", "Triumph", "Presence of Mind"],
@@ -22,14 +23,14 @@ slot3 = {
     "Inspiration": ["Cosmic Insight", "Approach Velocity", "Time Warp Tonic"],
 }
 
+keystones = {
+    "Precision": ["Press the Attack", "Lethal Tempo", "Fleet Footwork", "Conqueror"],
+    "Domination": ["Electrocute", "Predator", "Dark Harvest", "Hall of Blades"],
+    "Sorcery": ["Summon Aery", "Arcane Comet", "Phase Rush"],
+    "Resolve": ["Grasp of the Undying", "Aftershock", "Guardian"],
+    "Inspiration": ["Glacial Augment", "Unsealed Spellbook", "Prototype: Omnistone"],
+}
 def get_keystones(answers):
-    keystones = {
-        "Precision": ["Press the Attack", "Lethal Tempo", "Fleet Footwork", "Conqueror"],
-        "Domination": ["Electrocute", "Predator", "Dark Harvest", "Hall of Blades"],
-        "Sorcery": ["Summon Aery", "Arcane Comet", "Phase Rush"],
-        "Resolve": ["Grasp of the Undying", "Aftershock", "Guardian"],
-        "Inspiration": ["Glacial Augment", "Unsealed Spellbook", "Prototype: Omnistone"],
-    }
     return keystones[answers['primarypath']]
 
 def get_primary_slot1(answers):
@@ -132,3 +133,26 @@ def get_questions():
             ]
         },
     ]
+
+def simplify_output(runes):
+    primarypath = runes['primarypath']
+    primarypathcolour = colour[paths.index(primarypath)]
+
+    keystoneindex = str(keystones[primarypath].index(runes['keystone'])+1)
+    primaryslot1index = str(slot1[primarypath].index(runes['primaryslot1'])+1)
+    primaryslot2index = str(slot2[primarypath].index(runes['primaryslot2'])+1)
+    primaryslot3index = str(slot3[primarypath].index(runes['primaryslot3'])+1)
+
+    secondarypath = runes['secondarypath']
+    secondarypathcolour = colour[paths.index(secondarypath)]
+
+    second_slots = slot1[secondarypath] + slot2[secondarypath] + slot3[secondarypath]
+    secondaryslot1index = str(second_slots.index(runes['secondaryslot1'])+1)
+    secondaryslot2index = str(second_slots.index(runes['secondaryslot2'])+1)
+
+    output = primarypathcolour + " " + keystoneindex + " " + primaryslot1index  + " " + primaryslot2index  + " " + primaryslot3index 
+    output += " || " + secondarypathcolour + " " + secondaryslot1index + " " + secondaryslot2index 
+    output += " || " + runes['offensive'][0] + " " + runes['flex'][0] + " " + runes['defence'][0]
+    return output
+
+
