@@ -17,4 +17,9 @@
 
 ## Usage
 `lolcli freechamp` will return all free to play champion rotation.
+
+`lolcli addrunes <runes-set-name>` will prompt a set of question for storing the runes set.
+
+`lolcli getrunes <runes-set-name>` gets back the runes set stored.
+
 More Functionality to be added.
