@@ -148,6 +148,36 @@ def addrunes(name):
             'message': 'Secondary slot 2?',
             'choices': get_secondary_slot2
         },
+        {
+            'type': 'list',
+            'name': 'offensive',
+            'message': 'Shard -- Offensive?',
+            'choices': [
+                "1. +9 Adaptive Force",
+                "2. +10%% Attack Speed",
+                "3. +1%%-10%% (based on level) Cooldown Reduction"
+            ]
+        },
+        {
+            'type': 'list',
+            'name': 'flex',
+            'message': 'Shard -- Flex?',
+            'choices': [
+                "1. +9 Adaptive Force",
+                "2. +6 Armor",
+                "3. +8 Aagic Resistance"
+            ]
+        },
+        {
+            'type': 'list',
+            'name': 'defence',
+            'message': 'Shard -- Defence?',
+            'choices': [
+                "1. +15-90 (based on level) Health",
+                "2. +6 Armor",
+                "3. +8 Aagic Resistance"
+            ]
+        },
     ]
     answers = prompt(questions)
     pprint(answers)
